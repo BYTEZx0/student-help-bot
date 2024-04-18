@@ -1,6 +1,6 @@
 import logging
 import telebot
-from config import API_TOKEN
+from configuration.config import API_TOKEN
 
 
 #configuring logging.
