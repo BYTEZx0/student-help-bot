@@ -6,6 +6,8 @@ from config import API_TOKEN
 #configuring logging.
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+logger.init_logger(f"logs/botlog.log")
+
 
 #intializing bot 
 bot = telebot.TeleBot(API_TOKEN)
