@@ -11,5 +11,12 @@ checkout to the new branch use the feature name you are working on
      ```
 - create PR to the main branch
 
-    
+## Create `.env` in root folder
+
+```env
+   TOKEN=<TELEGRAM_BOT_TOKEN>
+   SUPABASE_URL=<SUPABASE_URL>
+   SUPABASE_KEY=<SUPABASE_KEY>
+```
+
     
