@@ -1,5 +1,4 @@
 ## Contribution Guidelines
-
 - clone repo
 checkout to the new branch use the feature name you are working on 
     - ```bash
