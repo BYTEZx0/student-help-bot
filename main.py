@@ -1,7 +1,7 @@
 import logging
 import telebot
 from configuration.config import API_TOKEN
-
+import requests
 
 #configuring logging.
 logging.basicConfig(level=logging.INFO)
