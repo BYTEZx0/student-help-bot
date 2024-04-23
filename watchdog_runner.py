@@ -17,7 +17,7 @@ class RestartHandler(FileSystemEventHandler):
         # Find and kill existing bot process
         try:
             # Only works on Unix-like systems
-            subprocess.run(['taskkill', '/F', '/IM', 'python.exe'])
+            subprocess.run(['pkill', '-f', 'main.py'])
             print("Previous bot process terminated.")
         except Exception as e:
             print(f"Failed to terminate bot process: {e}")
