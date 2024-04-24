@@ -2,7 +2,7 @@ import logging
 import telebot
 from configuration.config import API_TOKEN
 import utils.logger as logger_save
-from utils.regCheck import regCheck
+from utils.reg_check import reg_check
 from telebot.util import user_link
 import re
 
@@ -55,7 +55,7 @@ def process_reg_no_step(message):
         chat_id = message.chat.id
         reg_no = message.text
         #add condition to check reg_no
-        if not regCheck(reg_no):
+        if not reg_check(reg_no):
             msg = bot.reply_to(message, 'Enter Correct University Number')
             bot.register_next_step_handler(msg, process_reg_no_step)
             return
