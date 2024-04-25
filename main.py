@@ -3,6 +3,7 @@ import telebot
 from configuration.config import API_TOKEN
 import utils.logger as logger_save
 from utils.reg_check import reg_check
+from utils.modelpaper import get_question_paper
 from telebot.util import user_link
 import re
 
@@ -29,13 +30,7 @@ class User:
 
 @bot.message_handler(commands=['start', 'hello'])
 def send_welcome(message):
-    html_username = user_link(message.from_user)
-    match = re.search(r">([^<]+)<", html_username)
-    print("match", match)
-    if match:
-       username = match.group(1)
-       print(username)
-
+    get_question_paper() # testing the data fetch from supabase
     msg = bot.reply_to(message, "Hi I am Student Help Bot\nEnter Your Name")
     bot.register_next_step_handler(msg, process_name_step)
 
