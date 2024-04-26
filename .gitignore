@@ -6,6 +6,8 @@ __pycache__/
 # C extensions
 *.so
 
+#handlers
+.handler-saves/
 # Distribution / packaging
 .Python
 build/
