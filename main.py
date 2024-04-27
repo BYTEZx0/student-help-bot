@@ -5,6 +5,7 @@ import utils.logger as logger_save
 from utils.reg_check import reg_check
 from utils.modelpaper import get_question_paper
 from telebot.util import user_link
+from telebot.types import InputFile
 import re
 
 #configuring logging.
@@ -41,8 +42,7 @@ def model_command(message):
         bot.reply_to(message, "Try using:\n /model <subject_code>")
         return
     subject_code = args[1].upper()
-    # Do something with the subject_code
-    #bot.reply_to(message, f"Received Subject Code: {subject_code}")
+    bot.send_document(message.chat.id, InputFile("pdf/bitcoin.pdf")) # TODO add the reponse of file fetch to this function
 
 def process_name_step(message):
     try:
