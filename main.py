@@ -34,6 +34,16 @@ def send_welcome(message):
     msg = bot.reply_to(message, "Hi I am Student Help Bot\nEnter Your Name")
     bot.register_next_step_handler(msg, process_name_step)
 
+@bot.message_handler(commands=['model'])
+def model_command(message):
+    args = message.text.split()
+    if len(args) < 2:
+        bot.reply_to(message, "Try using:\n /model <subject_code>")
+        return
+    subject_code = args[1].upper()
+    # Do something with the subject_code
+    #bot.reply_to(message, f"Received Subject Code: {subject_code}")
+
 def process_name_step(message):
     try:
         chat_id = message.chat.id
