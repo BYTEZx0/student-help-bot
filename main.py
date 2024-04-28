@@ -4,6 +4,7 @@ from configuration.config import API_TOKEN
 import utils.logger as logger_save
 from utils.reg_check import reg_check
 from utils.modelpaper import get_question_paper
+from utils.usersave import post_usersave
 from telebot.util import user_link
 from telebot.types import InputFile
 import re
@@ -32,6 +33,11 @@ class User:
 @bot.message_handler(commands=['start', 'hello'])
 def send_welcome(message):
     get_question_paper() # testing the data fetch from supabase
+    logger.info("char_id", message.chat.id)
+    logger.info("user_dict", user_dict)
+    if message.chat.id in user_dict:
+        bot.send_message(message.chat.id, "Hi " +  user_dict[message.chat.id].name + "\nYou are already registered, Now you can get modelpapers using \n `/model <subject_code>` command")
+        return
     msg = bot.reply_to(message, "Hi I am Student Help Bot\nEnter Your Name")
     bot.register_next_step_handler(msg, process_name_step)
 
@@ -64,16 +70,13 @@ def process_reg_no_step(message):
             msg = bot.reply_to(message, 'Enter Correct University Number')
             bot.register_next_step_handler(msg, process_reg_no_step)
             return
-        print("Chat Id", chat_id)
         user = user_dict[chat_id]
         user.reg_no = reg_no.upper()
+        post_usersave(user_name=user.name, uyt_reg=user.reg_no) #save user details to database
         bot.send_message(chat_id, user.name + " Your University Registration Number : "+ user.reg_no)
     except Exceptions as e:
         bot.reply_to(message, "oops")
 
-@bot.message_handler(func=lambda msg: True)
-def echo_all(message):
-    bot.reply_to(message, message.text)
 
 # Enable saving next step handlers to file "./.handlers-saves/step.save".
 # Delay=2 means that after any change in next step handlers (e.g. calling register_next_step_handler())
