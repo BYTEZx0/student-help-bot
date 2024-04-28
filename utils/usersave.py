@@ -7,5 +7,6 @@ def post_usersave(*args, **kwargs):
     '''Saves user info to databse ''' 
     user_name = kwargs["user_name"]
     uyt_reg = kwargs["uyt_reg"]
-    data, count = supabase.table("user_info").insert({"username":user_name, "utyreg": uyt_reg}).execute()
+    chat_id = kwargs["chat_id"]
+    data, count = supabase.table("user_info").insert({"username":user_name, "utyreg": uyt_reg, "chatid": chat_id}).execute()
 

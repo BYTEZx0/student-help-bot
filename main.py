@@ -72,7 +72,7 @@ def process_reg_no_step(message):
             return
         user = user_dict[chat_id]
         user.reg_no = reg_no.upper()
-        post_usersave(user_name=user.name, uyt_reg=user.reg_no) #save user details to database
+        post_usersave(user_name=user.name, uyt_reg=user.reg_no, chat_id=chat_id) #save user details to database
         bot.send_message(chat_id, user.name + " Your University Registration Number : "+ user.reg_no)
     except Exceptions as e:
         bot.reply_to(message, "oops")
