@@ -2,12 +2,16 @@ import logging
 import telebot
 from configuration.config import API_TOKEN
 import utils.logger as logger_save
+<<<<<<< HEAD
 from utils.validator import *
 from utils.modelpaper import get_question_paper
 from utils.usersave import post_usersave
 from telebot.util import user_link
+=======
+from utils.reg_check import reg_check
+from utils.views import post_usersave
+>>>>>>> cedc2ca62ec4ee068286fee6a5ef7a33cfb12057
 from telebot.types import InputFile
-import re
 
 #configuring logging.
 logging.basicConfig(level=logging.INFO)
@@ -32,7 +36,6 @@ class User:
 
 @bot.message_handler(commands=['start', 'hello'])
 def send_welcome(message):
-    get_question_paper() # testing the data fetch from supabase
     logger.info("char_id", message.chat.id)
     logger.info("user_dict", user_dict)
     if message.chat.id in user_dict:
