@@ -2,7 +2,7 @@ import logging
 import telebot
 from configuration.config import API_TOKEN
 import utils.logger as logger_save
-from utils.reg_check import reg_check
+from utils.validator import reg_check, subject_code_check
 from utils.views import post_usersave
 from telebot.types import InputFile
 
@@ -44,7 +44,11 @@ def model_command(message):
         bot.reply_to(message, "Try using:\n /model <subject_code>")
         return
     subject_code = args[1].upper()
-    bot.send_document(message.chat.id, InputFile("pdf/bitcoin.pdf")) # TODO add the reponse of file fetch to this function
+    if not subject_code_check(subject_code):
+        bot.reply_to(message, "Invalid Subject Code")
+        return
+    else:
+        bot.send_document(message.chat.id, InputFile("pdf/bitcoin.pdf")) # TODO add the reponse of file fetch to this function
 
 def process_name_step(message):
     try:
@@ -62,7 +66,7 @@ def process_reg_no_step(message):
         chat_id = message.chat.id
         reg_no = message.text
         #add condition to check reg_no
-        if not reg_check(reg_no):
+        if not reg_check(reg_no.upper()):
             msg = bot.reply_to(message, 'Enter Correct University Number')
             bot.register_next_step_handler(msg, process_reg_no_step)
             return
