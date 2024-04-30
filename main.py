@@ -4,6 +4,7 @@ from configuration.config import API_TOKEN
 import utils.logger as logger_save
 from telebot.util import user_link
 import re
+import os
 
 #configuring logging.
 logging.basicConfig(level=logging.INFO)
@@ -13,7 +14,9 @@ logger_save.init_logger(f"logs/botlog.log")
 
 
 #intializing bot 
-bot = telebot.TeleBot(API_TOKEN)
+BOT_TOKEN = os.environ.get('BOT_TOKEN')
+
+bot = telebot.TeleBot(BOT_TOKEN)
 
 
 #to store user info
