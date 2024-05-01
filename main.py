@@ -4,6 +4,7 @@ from configuration.config import API_TOKEN
 import utils.logger as logger_save
 from utils.validator import reg_check, subject_code_check
 from utils.views import post_usersave
+from utils.courses import COURSE_DETAILS
 from telebot.types import InputFile
 
 #configuring logging.
@@ -48,7 +49,10 @@ def model_command(message):
         bot.reply_to(message, "Invalid Subject Code")
         return
     else:
-        bot.send_document(message.chat.id, InputFile("pdf/bitcoin.pdf")) # TODO add the reponse of file fetch to this function
+        if subject_code in COURSE_DETAILS.keys():
+            bot.send_document(message.chat.id, InputFile("pdf/bitcoin.pdf")) # TODO add the reponse of file fetch to this function
+        else:
+            bot.reply_to(message, subject_code+" is not an existing Subject Code")
 
 def process_name_step(message):
     try:
