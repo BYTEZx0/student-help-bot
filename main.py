@@ -50,7 +50,7 @@ def model_command(message):
         return
     else:
         if subject_code in COURSE_DETAILS.keys():
-            bot.send_document(message.chat.id, InputFile("pdf/bitcoin.pdf")) # TODO add the reponse of file fetch to this function
+            bot.send_document(message.chat.id, "AAMCBQADHQR-NqCQAAMDZjJllniOQ4jefZmV93imTv3dpr0AAjsMAAKgV5lVnnWqqNObvz8BAAdtAAM0BA") # TODO add the reponse of file fetch to this function
         else:
             bot.reply_to(message, subject_code+" is not an existing Subject Code")
 
