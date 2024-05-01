@@ -6,3 +6,15 @@ response = requests.post('https://api.telegram.org/bot7084726284:AAEQPkxGuJy8Ccl
 
 #reponse_json = json.loads(response)
 print("reponse", list(response))
+
+
+# {
+#     "subject_code1":
+#     {
+#         "file_id1":"filename", 
+#         "fileid2":"filename", 
+#         "file_id3":"filename"
+#     },
+#
+#         
+# }
