@@ -55,6 +55,7 @@ def model_command(message):
             bot.reply_to(message, subject_code+" is not an existing Subject Code")
 
 def process_name_step(message):
+    #Add an exception such that no commands should be taken as name
     try:
         chat_id = message.chat.id
         name = message.text
