@@ -1,0 +1,20 @@
+from supabase import create_client, Client
+from configuration.config import SUPABASE_KEY, SUPABASE_URL
+
+supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+
+#this will be replaced by a logic to take question paper from local storage
+def get_question_paper():
+    '''to fetch question paper from supabase bucket'''
+    print(f"{SUPABASE_URL=} + {SUPABASE_KEY=}")
+    res = supabase.table('user_info').select("*").execute()
+    print(f"{res=}")
+
+def post_usersave(*args, **kwargs):
+    '''Saves user info to database ''' 
+    user_name = kwargs["user_name"]
+    uyt_reg = kwargs["uyt_reg"]
+    chat_id = kwargs["chat_id"]
+    data, count = supabase.table("user_info").insert({"username":user_name, "utyreg": uyt_reg, "chatid": chat_id}).execute()
+
+

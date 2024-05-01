@@ -1,24 +1,33 @@
-## Contribution Guidelines
-- clone repo
-checkout to the new branch use the feature name you are working on 
 
-- ```bash
-        git checkout -b yourBranch
-      ```
-- commit the code
+# Student Help Bot
+telegram bot to help student
 
+## Setup Locally 
 
-- push the code
-    - ```bash
-         git push -u origin yourBranch
-      ```
+### Clone Repository
 
+```bash
+git clone https://github.com/BYTEZx0/student-help-bot.git
+```
 
-- create PR to the main branch
+### Change directory
 
+```bash
+cd student-help-bot
+```
 
-## Create `.env` in root folder
+### Setup environment
+```bash
+poetry install
+```
 
+### Install modules
+```bash
+poetry install
+```
+
+### Create `.env`
+create a  `.env` file in root directory
 
 ```env
    TOKEN=<TELEGRAM_BOT_TOKEN>
@@ -26,4 +35,8 @@ checkout to the new branch use the feature name you are working on
    SUPABASE_KEY=<SUPABASE_KEY>
 ```
 
-    
+### Start bot
+```bash
+python3 main.py
+```
+
