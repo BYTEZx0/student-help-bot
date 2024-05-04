@@ -18,3 +18,9 @@ def post_usersave(*args, **kwargs):
     data, count = supabase.table("user_info").insert({"username":user_name, "utyreg": uyt_reg, "chatid": chat_id}).execute()
 
 
+
+def post_dob_aadhar_update(*args, **kwargs):
+    dob = kwargs["dob"]
+    aadhar_no = kwargs["aadhar_no"]
+    chat_id = kwargs["chat_id"]
+    data, count = supabase.table("user_info").update({"dob": dob,"aadhar_no": aadhar_no}).eq("chatid", chat_id).execute()
