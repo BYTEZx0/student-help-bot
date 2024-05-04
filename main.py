@@ -3,7 +3,7 @@ import telebot
 from configuration.config import API_TOKEN
 import utils.logger as logger_save
 from utils.validator import reg_check, subject_code_check, aadhar_check, dob_check
-from utils.views import post_usersave, post_aadhar_update, post_dob_update
+from utils.views import post_usersave, post_dob_aadhar_update
 from utils.courses import COURSE_DETAILS
 from telebot.types import InputFile
 
@@ -107,7 +107,6 @@ def process_dob_step(message):
             return
         user = user_dict[chat_id]
         user.dob = dob
-        post_dob_update(dob=user.dob, chat_id=chat_id)#save dob to databse
         msg = bot.reply_to(message, " \nEnter your aadhar Number")
         bot.register_next_step_handler(msg, process_aadhar_step)
     except Exception as e:
@@ -123,7 +122,7 @@ def process_aadhar_step(message):
             return
         user = user_dict[chat_id]
         user.aadhar_no = aadhar_no
-        post_aadhar_update(aadhar_no=user.aadhar_no, chat_id=chat_id)#save aadhar to database
+        post_dob_aadhar_update(aadhar_no=user.aadhar_no, dob=user.dob, chat_id=chat_id)#save dob/aadhar to database
         bot.send_message(chat_id, user.name + " Your aadhar Number : "+ aadhar_no)
         
     except Exception as e:
